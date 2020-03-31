@@ -19,17 +19,15 @@ int fibo2(int n)
 {
     return (1/sqrt(5))*( pow(2/(sqrt(5)-1),n) - pow(-2/(sqrt(5)+1),n) )+1;
 }
+const int rozmiar = 47;
+static std::vector<int> tab(rozmiar);
 int fibo3(int n)
 {
-    const int rozmiar = 46;
-    static std::vector<int> tab(rozmiar);
-    tab[0] = 1;
-    tab[1] = 1;
-    for(int i=1;i<=n;i++)
-    {
-        tab[i]=tab[i-1]+tab[i-2];
-    }
-    return tab[n-1];
+    if(n<=2)
+        return 1;
+    if(tab[n]==0)
+        tab[n] = fibo3(n-1)+fibo3(n-2);
+    return tab[n];
 }
 int main()
 {
@@ -39,7 +37,7 @@ int main()
     start = std::clock();
 
     std::cout<<"\nFibo1\n";
-    for (int n = 0; n<48;n++)
+    for (int n = 1; n<47;n++)
     {
        std::cout<<fibo1(n)<<"\n"; 
     }
@@ -52,7 +50,7 @@ int main()
     start = std::clock();
 
     std::cout<<"\nFibo2\n";
-    for (int n = 0; n<48;n++)
+    for (int n = 1; n<47;n++)
     {
        std::cout<<fibo2(n)<<"\n"; 
     }
@@ -64,7 +62,7 @@ int main()
     start = std::clock();
 
     std::cout<<"\nFibo3\n";
-    for (int n = 0; n<48;n++)
+    for (int n = 1; n<47;n++)
     {
        std::cout<<fibo3(n)<<"\n"; 
     }

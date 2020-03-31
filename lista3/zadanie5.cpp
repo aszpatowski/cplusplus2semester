@@ -16,4 +16,7 @@ int main()
 
     }
     std::cout << "witaj w systemie!\n";
-}
+}// Działa to na takiej samej zasadzie jak zadanie 4, powyzej 8 znakow zaczynaja się indexy -1, -2 ...
+// odwołują się do miejsc w pamięci ostatnio zdefiniowanych zmiennych i je nadpisuje.
+// Tutaj to jeszcze nie działa, ponieważ nie jest to opisane w standardzie jezyka i wynik zalezy od kompilatora.
+// W pliku zadanie 6 jest poprawione i ten "trik" działa na moim kompilatorze.

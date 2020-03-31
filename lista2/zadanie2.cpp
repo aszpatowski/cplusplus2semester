@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <climits>
 
-void zeruj(const std::vector <double>& v)
+void zeruj(std::vector <double>& v)
 {
    for(int i =0;i<v.size();i++)
    {

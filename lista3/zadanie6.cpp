@@ -17,4 +17,4 @@ int main()
     }
     std::cout << "witaj w systemie!\n";
 }
-//teraz działa
+//teraz działa, musiałem zmiennic kolejnosc definiowania zmiennych.

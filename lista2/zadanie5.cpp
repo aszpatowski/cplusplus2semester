@@ -5,15 +5,9 @@
 #include <ctime>
 int fibo1(int n)
 {
-    if(n<3) return 1;
-    int f1=1,f2=1,temp;
-    for(int i=0;i<n-2;i++)
-    {
-        temp = f1+f2;
-        f1 =f2;
-        f2=temp;
-    }
-    return f2;
+    if (n<=2)
+        return 1;
+    return fibo1(n-1) + fibo1(n-2);            //poprawione na rekurencyjna, niedoczytałem poprzdnim razem.
 }
 int fibo2(int n)
 {

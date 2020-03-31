@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <climits>
 
-int thelowest(std::vector <int> v)
+int thelowest(const std::vector <int> v)
 {
     if(v.size()==0)
     {

@@ -1,6 +1,7 @@
 #include <iostream>
 #include "random.h"
 #include <algorithm>
+#include <vector>
 
 int main()
 {

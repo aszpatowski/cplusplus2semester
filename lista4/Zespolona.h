@@ -3,12 +3,12 @@
 
 class Zespolona
 {
-    friend std::ostream& operator << (std::ostream & , Zespolona const&);
-    friend std::istream& operator >> (std::istream & , Zespolona const&);
+    friend std::ostream& operator << (std::ostream &F , Zespolona const&arg);
+    friend std::istream& operator >> (std::istream &F , Zespolona &arg);
     private:
-    int real, imag;
+    double real, imag;
     public:
-    Zespolona(int r = 0, int i = 0)
+    Zespolona(double r = 0, double i = 0)
     {
         real =r;
         imag =i;
@@ -52,11 +52,13 @@ class Zespolona
 };  
 std::ostream& operator << (std::ostream & F, Zespolona const& arg)
 {
-        return F << arg.real + "i" + arg.imag; 
+        return F << arg.real << " + " << arg.imag<<"i"; 
 }
-std::istream& operator >> (std::istream & F, Zespolona const& arg)
+std::istream& operator >> (std::istream & F, Zespolona &arg)
 {
+        std::cout<<"Real: ";
         F >> arg.real;
+        std::cout<<"Imag: ";
         F >> arg.imag;
         return F;
 }

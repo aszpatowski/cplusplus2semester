@@ -15,6 +15,6 @@ int main()
 
 //a Najwyzszy priorytet ma  ++, potem *, a nanizszy =
 //b zwiększa adres o 1 w wyniku czego odwołuje się do nastpnej komorki w charze.
-//c przypisuje do zmiennej adres obiektu (wskaznik)
+//c dereferencja wyciąga wartość spod adresu
 //d przypisuje do poszczegolnej komorki bufora adres komorki tekstu (zwraca wartośc adresu)
 //e Wtedy wszystko ma wartość true, oprocz 0(lub NULL), wtedy ma wartosc false (w tym przypadku dzieje się to wtedy gdy adres skad wskaze ostatnia wartosc char czyli 0 )

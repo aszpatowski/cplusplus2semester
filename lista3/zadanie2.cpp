@@ -13,16 +13,12 @@ std::vector <double> E[4]; //E
 
 double(*F_wskaznik) (double[],int); //F
 
-int x = 10;
-
-int *p =&x;
-
-int G(int &p)
+int G(int*& g_wskaznik) //G poprawione
 {
-    return 2*p; //G CHYBA
+    return 0;
 }
 
 int main()
 {
-    std::cout<<G(*p)<<"\n";
+    
 }

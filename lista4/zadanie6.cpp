@@ -2,6 +2,7 @@
 
 class X
 {
+  // friend std::ostream& operator << (std::ostream &F, X const & arg);
 private:
     int _x;
 public:
@@ -10,7 +11,7 @@ public:
 
 std::ostream& operator << (std::ostream &F, X const & arg)
 {
-    return F << arg;
+    return F << arg; //powinno być arg._x
 }
 int main()
 {

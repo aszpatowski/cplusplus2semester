@@ -2,9 +2,11 @@
 #include "random.h"
 #include <algorithm>
 #include <vector>
-
+#include <fstream>
+#include <cstdlib> // exit(1)
 int main()
 {
+    std::ofstream outdata;
     const int rozmiar = 100000; 
     double generated_numbers[rozmiar];
     Random rnd;
@@ -26,12 +28,27 @@ int main()
         if(generated_numbers[i]<0.9) {histogram_data[8]++;continue;}
         if(generated_numbers[i]<1.0) {histogram_data[9]++;continue;}
     }
+    outdata.open("datarandom.dat"); 
+    if(!outdata)
+    {
+        std::cerr<< "Error: file could not be opened" << std::endl;
+        exit(1);
+    }
     std::cout<<"\nIlosc w przedziale: "<<"\n";
     for(int i =0;i<10;i++)
     {
         if(i<9)
-        std::cout<<"od"<<" 0."<<i<<" do 0."<<i+1<<" :  "<<histogram_data[i]<<"\n";
+        {
+            std::cout<<"od"<<" 0."<<i<<" do 0."<<i+1<<" :  "<<histogram_data[i]<<"\n";
+            outdata<<i<<"\t"<<"0."<<i<<"-0."<<i+1<<"\t"<<histogram_data[i]<<"\n";
+        }
+        
         else
-        std::cout<<"od 0.9 do 1.0"<<" :  "<<histogram_data[i]<<"\n";
+        {
+            std::cout<<"od 0.9 do 1.0"<<" :  "<<histogram_data[i]<<"\n";
+            outdata<<i<<"\t"<<"0.9-1.0"<<"\t"<<histogram_data[i]<<"\n";
+        }
+        
     }
+    outdata.close();
 }

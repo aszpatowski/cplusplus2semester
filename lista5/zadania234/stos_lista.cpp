@@ -60,3 +60,22 @@ std::ostream& operator <<(std::ostream& F, const Stos& stos)
     return F;
 }
 
+//ZADANIE 4
+
+void Stos::reverse()
+{
+    Ogniwo *temp2 = _pSzczyt;
+    Ogniwo *temp1, *temp3;
+
+    while (temp2 != 0)
+    {
+        temp3 = temp2->_p_nastepny;
+
+        temp2->_p_nastepny = temp1;
+
+		temp1 = temp2;
+        
+		temp2 = temp3;
+	}
+	_pSzczyt = temp1;
+}

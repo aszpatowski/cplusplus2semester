@@ -28,6 +28,8 @@ public:
     size_t size() const;     // biezacy rozmiar stosu
     Stos& operator=(Stos const&); // operator przypisania
     friend std::ostream& operator <<(std::ostream& F, const Stos& stos); // operator STRUMIENIOWY
+
+    void reverse();
 private:
     Ogniwo* _pSzczyt;        // wskaznik na ogniwo lezace na szczycie stosu
     size_t  _size;           // rozmiar stosu

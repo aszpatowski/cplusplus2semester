@@ -23,7 +23,6 @@ int main()
 
     std::cout<<std::endl;
     Stos stos3 = stos2;
-    std::cout<<"stos2";
     std::cout<<std::endl;
 
     while (!stos2.empty())
@@ -35,12 +34,9 @@ int main()
     std::cout<<std::endl;
     std::cout<<"stos3";
     std::cout<<std::endl;
-
-    while (!stos3.empty())
-    {
-	std::cout << stos3.top() << " ";
-	stos3.pop();
-    }
+    std::cout<<stos3;
+    stos3.reverse();
+    std::cout<< stos3 << std::endl;
 
     std::cout<<std::endl;
 }

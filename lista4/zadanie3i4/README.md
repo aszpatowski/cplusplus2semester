@@ -12,5 +12,6 @@
     plot "datarandom.dat" u 1:3:xtic(2) w boxes lc rgb"green" notitle
 
     ```
+# Wykres
     <img src="https://github.com/aszpatowski/cplusplus2semester/tree/master/lista4/zadanie3i4/graph.png">
 

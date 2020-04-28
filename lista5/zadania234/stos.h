@@ -1,5 +1,6 @@
 #include <cassert>       // <-- definicja assert
 #include <cstddef>       // <-- definicja size_t
+#include <iostream>
 
 struct Ogniwo
 {
@@ -26,6 +27,7 @@ public:
     bool empty() const;      // czy stos jest pusty?
     size_t size() const;     // biezacy rozmiar stosu
     Stos& operator=(Stos const&); // operator przypisania
+    friend std::ostream& operator <<(std::ostream& F, const Stos& stos); // operator STRUMIENIOWY
 private:
     Ogniwo* _pSzczyt;        // wskaznik na ogniwo lezace na szczycie stosu
     size_t  _size;           // rozmiar stosu

@@ -10,19 +10,24 @@ Stos::~Stos()
 Stos::Stos(Stos const& rhs)
 :_size(rhs._size)
 {
-    _pSzczyt = new Ogniwo(rhs.top(), 0);
-    Ogniwo * temp = rhs._pSzczyt;
-    Ogniwo * cover = _pSzczyt;
-    for (size_t i = 0; i < _size-1; i++) // _size -1 poniewaz gore przypisujemy recznie.
+    if(_size!=0)
     {
-        temp = temp->_p_nastepny;
 
-        _pSzczyt ->_p_nastepny = new Ogniwo(temp->_dane,_pSzczyt->_p_nastepny);
+        _pSzczyt = new Ogniwo(rhs.top(), 0);
+        Ogniwo * temp = rhs._pSzczyt;
+        Ogniwo * cover = _pSzczyt;
+        for (size_t i = 0; i < _size-1; i++) // _size -1 poniewaz gore przypisujemy recznie.
+        {
+            temp = temp->_p_nastepny;
 
-        _pSzczyt = _pSzczyt->_p_nastepny;
+            _pSzczyt ->_p_nastepny = new Ogniwo(temp->_dane,_pSzczyt->_p_nastepny);
+
+            _pSzczyt = _pSzczyt->_p_nastepny;
+        }
+        _pSzczyt->_p_nastepny = 0;
+        _pSzczyt = cover;
     }
-    _pSzczyt->_p_nastepny = 0;
-    _pSzczyt = cover;
+
 }
 
 
@@ -65,9 +70,10 @@ std::ostream& operator <<(std::ostream& F, const Stos& stos)
 void Stos::reverse()
 {
     Ogniwo *temp2 = _pSzczyt;
-    Ogniwo *temp1, *temp3;
+    Ogniwo *temp1 = NULL;
+    Ogniwo *temp3 = NULL;
 
-    while (temp2 != 0)
+    while (temp2 != NULL)
     {
         temp3 = temp2->_p_nastepny;
 

@@ -10,7 +10,7 @@ int main()
         if (i % 3 == i % 5)
             stos.push(i);
     }
-
+    stos.push(0); 
     Stos stos2(stos);
     std::cout<<"stos1";
     std::cout<<std::endl;
@@ -39,4 +39,5 @@ int main()
     std::cout<< stos3 << std::endl;
 
     std::cout<<std::endl;
+    return 0;
 }

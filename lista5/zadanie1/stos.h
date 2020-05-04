@@ -47,7 +47,7 @@ inline void Stos::pop()
 {
     assert( !empty() );
     _size--;
-    if(_capacity >= 4 * _size && _capacity>=4 ) //był błąd przy kompilacji gdy nie sprawdzało czy _capacity>=4, ze wzgledu na asercje w metodzie _shrink.
+    if(_capacity == 4 * _size && _capacity>=4 ) //był błąd przy kompilacji gdy nie sprawdzało czy _capacity>=4, ze wzgledu na asercje w metodzie _shrink.
         Stos::_shrink();
 }
 

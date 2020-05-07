@@ -12,7 +12,6 @@ Stos::Stos(Stos const& rhs)
 {
     if(_size!=0)
     {
-
         _pSzczyt = new Ogniwo(rhs.top(), 0);
         Ogniwo * temp = rhs._pSzczyt;
         Ogniwo * cover = _pSzczyt;
@@ -20,12 +19,16 @@ Stos::Stos(Stos const& rhs)
         {
             temp = temp->_p_nastepny;
 
-            _pSzczyt ->_p_nastepny = new Ogniwo(temp->_dane,_pSzczyt->_p_nastepny);
+            _pSzczyt ->_p_nastepny = new Ogniwo(temp->_dane,nullptr);
 
             _pSzczyt = _pSzczyt->_p_nastepny;
         }
         _pSzczyt->_p_nastepny = 0;
         _pSzczyt = cover;
+    }
+    else
+    {
+        _pSzczyt = nullptr;
     }
 
 }
@@ -43,7 +46,7 @@ Stos& Stos::operator=(Stos const& rhs)
     {
         temp = temp->_p_nastepny;
 
-        _pSzczyt ->_p_nastepny = new Ogniwo(temp->_dane,_pSzczyt->_p_nastepny);
+        _pSzczyt ->_p_nastepny = new Ogniwo(temp->_dane,nullptr);
 
         _pSzczyt = _pSzczyt->_p_nastepny;
     }
@@ -69,10 +72,11 @@ std::ostream& operator <<(std::ostream& F, const Stos& stos)
 
 void Stos::reverse()
 {
+    if(_size>1)
+    {
     Ogniwo *temp2 = _pSzczyt;
-    Ogniwo *temp1 = NULL;
-    Ogniwo *temp3 = NULL;
-
+    Ogniwo *temp1 = nullptr;
+    Ogniwo *temp3 = nullptr;
     while (temp2 != NULL)
     {
         temp3 = temp2->_p_nastepny;
@@ -84,4 +88,5 @@ void Stos::reverse()
 		temp2 = temp3;
 	}
 	_pSzczyt = temp1;
+    }
 }

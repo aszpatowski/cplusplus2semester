@@ -10,7 +10,7 @@ Stos::~Stos()
 Stos::Stos(Stos const& rhs)
 :_size(rhs._size)
 {
-    if(_size!=0)
+    if(_size!=0) //aby się nie sypało przy kopiowaniu stosu pustego
     {
         _pSzczyt = new Ogniwo(rhs.top(), 0);
         Ogniwo * temp = rhs._pSzczyt;
@@ -19,7 +19,7 @@ Stos::Stos(Stos const& rhs)
         {
             temp = temp->_p_nastepny;
 
-            _pSzczyt ->_p_nastepny = new Ogniwo(temp->_dane,nullptr);
+            _pSzczyt ->_p_nastepny = new Ogniwo(temp->_dane,nullptr); //dodane nullprt wg zaleceń podanych na zajeciach
 
             _pSzczyt = _pSzczyt->_p_nastepny;
         }
@@ -46,7 +46,7 @@ Stos& Stos::operator=(Stos const& rhs)
     {
         temp = temp->_p_nastepny;
 
-        _pSzczyt ->_p_nastepny = new Ogniwo(temp->_dane,nullptr);
+        _pSzczyt ->_p_nastepny = new Ogniwo(temp->_dane,nullptr); //dodane nullprt wg zaleceń podanych na zajeciach
 
         _pSzczyt = _pSzczyt->_p_nastepny;
     }
@@ -72,7 +72,7 @@ std::ostream& operator <<(std::ostream& F, const Stos& stos)
 
 void Stos::reverse()
 {
-    if(_size>1)
+    if(_size>1) //poprawione, nie wywoluje zadnego efektu przy stosach 0 i 1 elementowych.
     {
     Ogniwo *temp2 = _pSzczyt;
     Ogniwo *temp1 = nullptr;

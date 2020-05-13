@@ -12,7 +12,7 @@ Stos::Stos(Stos const& rhs)
 {
     if(_size!=0) //aby się nie sypało przy kopiowaniu stosu pustego
     {
-        _pSzczyt = new Ogniwo(rhs.top(), 0);
+        _pSzczyt = new Ogniwo(rhs.top(), nullptr);
         Ogniwo * temp = rhs._pSzczyt;
         Ogniwo * cover = _pSzczyt;
         for (size_t i = 0; i < _size-1; i++) // _size -1 poniewaz gore przypisujemy recznie.
@@ -23,7 +23,7 @@ Stos::Stos(Stos const& rhs)
 
             _pSzczyt = _pSzczyt->_p_nastepny;
         }
-        _pSzczyt->_p_nastepny = 0;
+        _pSzczyt->_p_nastepny = nullptr;
         _pSzczyt = cover;
     }
     else
@@ -39,7 +39,7 @@ Stos& Stos::operator=(Stos const& rhs)
 	if (this == &rhs)
         return *this;
   	
-    _pSzczyt = new Ogniwo(rhs.top(), 0);
+    _pSzczyt = new Ogniwo(rhs.top(), nullptr);
     Ogniwo * temp = rhs._pSzczyt;
     Ogniwo * cover = _pSzczyt;
     for (size_t i = 0; i < _size-1; i++) // _size -1 poniewaz gore przypisujemy recznie.
@@ -50,7 +50,7 @@ Stos& Stos::operator=(Stos const& rhs)
 
         _pSzczyt = _pSzczyt->_p_nastepny;
     }
-    _pSzczyt->_p_nastepny = 0;
+    _pSzczyt->_p_nastepny = nullptr;
     _pSzczyt = cover;
     return *this;
 }

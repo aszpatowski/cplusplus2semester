@@ -36,23 +36,33 @@ Stos::Stos(Stos const& rhs)
 
 Stos& Stos::operator=(Stos const& rhs)
 {
-	if (this == &rhs)
-        return *this;
-  	
-    _pSzczyt = new Ogniwo(rhs.top(), nullptr);
-    Ogniwo * temp = rhs._pSzczyt;
-    Ogniwo * cover = _pSzczyt;
-    for (size_t i = 0; i < _size-1; i++) // _size -1 poniewaz gore przypisujemy recznie.
+	if(rhs._size!=0)
     {
-        temp = temp->_p_nastepny;
+        
+        if (this == &rhs)
+            return *this;
+        
+        _pSzczyt = new Ogniwo(rhs.top(), nullptr);
+        Ogniwo * temp = rhs._pSzczyt;
+        Ogniwo * cover = _pSzczyt;
+        for (size_t i = 0; i < _size-1; i++) // _size -1 poniewaz gore przypisujemy recznie.
+        {
+            temp = temp->_p_nastepny;
 
-        _pSzczyt ->_p_nastepny = new Ogniwo(temp->_dane,nullptr); //dodane nullprt wg zaleceń podanych na zajeciach
+            _pSzczyt ->_p_nastepny = new Ogniwo(temp->_dane,nullptr); //dodane nullprt wg zaleceń podanych na zajeciach
 
-        _pSzczyt = _pSzczyt->_p_nastepny;
+            _pSzczyt = _pSzczyt->_p_nastepny;
+        }
+        _pSzczyt->_p_nastepny = nullptr;
+        _pSzczyt = cover;
+        return *this;
     }
-    _pSzczyt->_p_nastepny = nullptr;
-    _pSzczyt = cover;
-    return *this;
+    else
+    {
+        _pSzczyt = 0;
+        return *this;
+    }
+    
 }
 //ZADANIE 3
 std::ostream& operator <<(std::ostream& F, const Stos& stos)

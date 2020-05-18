@@ -22,8 +22,8 @@ int main()
     }
     Stos stos12;
     std::cout<<std::endl;
-    //Stos stos3(stos12);
-    Stos stos3 = stos12;
+    Stos stos3(stos12);
+    //Stos stos3 = stos12;
     std::cout<<std::endl;
     std::cout<<"Stos2"<<std::endl;
     while (!stos2.empty())

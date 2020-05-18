@@ -59,7 +59,7 @@ Stos& Stos::operator=(Stos const& rhs)
     }
     else
     {
-        _pSzczyt = 0;
+        _pSzczyt = nullptr;
         return *this;
     }
     

@@ -36,7 +36,8 @@ Stos::Stos(Stos const& rhs)
 
 Stos& Stos::operator=(Stos const& rhs)
 {
-	if(rhs._size!=0)
+	_size = rhs._size;
+    if(_size!=0)
     {
         
         if (this == &rhs)

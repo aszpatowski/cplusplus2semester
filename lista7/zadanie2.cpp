@@ -74,13 +74,11 @@ void PPMimage::grey(const char nazwa_pliku[])
 {
    std::ofstream F(nazwa_pliku, std::ios::binary);
    F << "P2\n" << _szerokosc << " " << _wysokosc << "\n" << _glebia << "\n";
-   for (int i = 0; i < _wysokosc; i=i+3)
+   for (int i = 0; i < _wysokosc; ++i)
    {
-      const int adresR = _tab[i];
-      const int adresG = _tab[i+1];
-      const int adresB = _tab[i+2];
+      const char* adres = reinterpret_cast<char*>(_tab[i]);
       //std::cout<<adres<<"\t"<<_szerokosc<<"\n";
-      F.write(int(adresR+adresG+adresB)/3, 3 * _szerokosc);
+      F.write(adres, 3 * _szerokosc);
    }
 }
 

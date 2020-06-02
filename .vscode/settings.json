@@ -45,6 +45,11 @@
         "list": "cpp",
         "functional": "cpp",
         "iterator": "cpp",
-        "ios": "cpp"
+        "ios": "cpp",
+        "chrono": "cpp",
+        "map": "cpp",
+        "numeric": "cpp",
+        "ratio": "cpp",
+        "cinttypes": "cpp"
     }
 }

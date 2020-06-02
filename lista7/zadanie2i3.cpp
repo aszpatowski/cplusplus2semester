@@ -12,6 +12,7 @@ public:
    ~PPMimage();
    void zapisz(const char nazwa_pliku[]);    // zapisuje obraz w pliku
    void grey(const char nazwa_pliku[]);
+   void soft(int r);
    PPMimage(PPMimage const&);             
    
 private:
@@ -65,23 +66,64 @@ void PPMimage::zapisz(const char nazwa_pliku[])
    {
       const char* adres = reinterpret_cast<char*>(_tab[i]);
       //std::cout<<adres<<"\t"<<_szerokosc<<"\n";
-      std::cout<<adres<<"\n";
       F.write(adres, 3 * _szerokosc);
    }
 }
 
-void PPMimage::grey(const char nazwa_pliku[])
+void PPMimage::grey(const char nazwa_pliku[]) //zadanie 2
 {
    std::ofstream F(nazwa_pliku, std::ios::binary);
-   F << "P2\n" << _szerokosc << " " << _wysokosc << "\n" << _glebia << "\n";
+   char* adres = new char[_szerokosc];
+   int grey_color;
+   F << "P5\n" << _szerokosc << " " << _wysokosc << "\n" << _glebia << "\n";
    for (int i = 0; i < _wysokosc; ++i)
    {
-      const char* adres = reinterpret_cast<char*>(_tab[i]);
+      for (int j = 0; j < _szerokosc; ++j)
+      {
+         grey_color = (_tab[i][j].green + _tab[i][j].red + _tab[i][j].blue)/3; //srednia arytmetyczna z R, G i B
+         adres[j] = grey_color ;
+         
+      }
+      F.write(adres,_szerokosc);
       //std::cout<<adres<<"\t"<<_szerokosc<<"\n";
-      F.write(adres, 3 * _szerokosc);
    }
 }
-
+void PPMimage::soft(int r) //zadanie 3, r to stopień wygladzenia
+{
+   PPMimage kopia(*this);  
+   int rr = r*r;
+   for (int y = 0; y < _wysokosc; ++y)
+   {
+      for (int x = 0; x < _szerokosc; ++x)
+      {
+         double mianownik = 0;
+         int red = 0, green = 0, blue = 0;
+         for (int dx = -r; dx <= r; ++dx)
+         { 
+            int nx = x + dx;
+            if (nx < 0 || nx >= _szerokosc)
+               continue;
+            for (int dy = -r; dy <= r; ++dy)   
+            {
+               int ny = y + dy;
+               if (ny < 0 || ny >= _wysokosc)
+                  continue;
+               if (dx*dx + dy*dy > rr)
+                  continue;
+               mianownik++;
+               red   += kopia._tab[ny][nx].red;
+               green += kopia._tab[ny][nx].green;
+               blue  += kopia._tab[ny][nx].blue;
+            }
+         }
+         std::cout<<mianownik<<"\n";
+         _tab[y][x].red = char(0.5 + red / mianownik);
+         _tab[y][x].green = char(0.5 + green / mianownik);
+         _tab[y][x].blue = char(0.5 + blue / mianownik);
+      }  
+   }
+    
+}
 
 PPMimage::~PPMimage()
 {
@@ -95,5 +137,7 @@ int main()
 {
    PPMimage image("cosmos.ppm");
    //image.zapisz("cosmoselo.ppm");
-   image.grey("miekki.ppm");
+   image.grey("grey.pgm");
+   //image.soft(10);
+   //image.zapisz("cosmossoft.ppm");
 }

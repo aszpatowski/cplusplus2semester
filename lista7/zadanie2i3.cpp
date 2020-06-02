@@ -16,11 +16,11 @@ public:
    PPMimage(PPMimage const&);             
    
 private:
-   void operator= (PPMimage const& ) { }     // nie wywo³uj tej funkcji!
+   void operator= (PPMimage const& ) { }     // nie wywoluj tej funkcji!
    
    int     _szerokosc; // ilosc kolumn w obrazku
    int     _wysokosc;  // ilosc wierszy w obrazku
-   int     _glebia;    // glêbia koloru
+   int     _glebia;    // glebia koloru
    Kolor** _tab;       // adres dwuwymiarowej tablicy kolorów
 };
 
@@ -33,10 +33,10 @@ PPMimage::PPMimage(const char nazwa_pliku[])
       F.ignore(100000, '\n');
    F >> _szerokosc >> _wysokosc >> _glebia;         //wczytanie parametrów obrazu
    F.ignore(100000,'\n');            // pominiêcie bajtów do znaku '\n' wlacznie
-   _tab = new Kolor* [_wysokosc];       // przydzia³ pamiêci dla adresów wierszy
+   _tab = new Kolor* [_wysokosc];       // przydzial pamieci dla adresów wierszy
    for (int i = 0; i < _wysokosc; i++)
    {
-      _tab[i] = new Kolor [_szerokosc];  // przydzia³ pamiêci dla i-tego wiersza
+      _tab[i] = new Kolor [_szerokosc];  // przydzial pamieci dla i-tego wiersza
       char* adres = reinterpret_cast<char*>(_tab[i]);   // zmiana typu wskaznika
       F.read(adres , sizeof(Kolor) * _szerokosc);    // wczytanie i-tego wiersza
    }

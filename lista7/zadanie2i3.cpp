@@ -117,9 +117,9 @@ void PPMimage::soft(int r) //zadanie 3, r to stopień wygladzenia
             }
          }
          std::cout<<mianownik<<"\n";
-         _tab[y][x].red = char(0.5 + red / mianownik);
-         _tab[y][x].green = char(0.5 + green / mianownik);
-         _tab[y][x].blue = char(0.5 + blue / mianownik);
+         _tab[y][x].red = char(red / mianownik);
+         _tab[y][x].green = char(green / mianownik);
+         _tab[y][x].blue = char(blue / mianownik);
       }  
    }
     
@@ -138,6 +138,6 @@ int main()
    PPMimage image("cosmos.ppm");
    //image.zapisz("cosmoselo.ppm");
    image.grey("grey.pgm");
-   //image.soft(10);
-   //image.zapisz("cosmossoft.ppm");
+   image.soft(10);
+   image.zapisz("cosmossoft2.ppm");
 }
